@@ -6,14 +6,18 @@ $(document).ready(function() {
     inputTimer = setTimeout(function() {
       $('section.demo form.parse').submit();
     }, 500);
-  }
+  };
+
+  var selectLang = function() {
+    window.location.href = '/' + $('#parse_language').val();
+  };
 
   $('form.parse').bind('ajax:success', function(e, data, status, xhr) {
     $('pre.highlight').replaceWith(data);
   });
 
   $('#parse_source').on('input', submitSource);
-  $('#parse_language').on('change', submitSource)
+  $('#parse_language').on('change', selectLang);
 
   $('form.new_paste input[type=submit]').on('click', function() {
     $('#paste_language').val($('#parse_language').val());
